@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ Configs.ctf_name }}</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="{{ Configs.ctf_small_icon }}" type="image/x-icon">
+	<link rel="stylesheet" href="{{ url_for('views.themes', path='css/fonts.css') }}">
+	<link rel="stylesheet" href="{{ url_for('views.themes', path='css/main.css') }}">
+	<link rel="stylesheet" href="{{ url_for('views.themes', path='css/core.css') }}">
+	{% block stylesheets %}
+	{% endblock %}
+
+	{{ Plugins.styles }}
+	<script type="text/javascript">
+		var init = {
+			'urlRoot': "{{ request.script_root }}",
+			'csrfNonce': "{{ Session.nonce }}",
+			'userMode': "{{ Configs.user_mode }}",
+			'userId': {{ Session.id }},
+			'start': {{ Configs.start | tojson }},
+			'end': {{ Configs.end | tojson }},
+			'theme_settings': {{ Configs.theme_settings | tojson }}
+		}
+	</script>
+	{{ Configs.theme_header }}
+</head>
+<body>
+<style type="text/css">
+	body{
+    		background-image: url(https://gitee.com/seizer-zyx/picgo/raw/master/background/202109162228256.jpg);
+		background-size: cover;
+		background-position: center;
+    		background-repeat: no-repeat;
+	}
+</style>
+	{% include "components/navbar.html" %}
+
+	<main>
+		{% block content %}
+		{% endblock %}
+	</main>
+
+	<footer style="z-index:999;" class="footer">
+		<div class="container text-center">
+			<a href="https://ctfd.io" class="text-secondary">
+				<small class="text-muted">Powered by CTFd,</small>
+			</a>
+			<a href="https://beian.miit.gov.cn" class="text-secondary">
+				<small class="text-muted">陕ICP备2021010664号-1</small>
+			</a>
+		</div>
+	</footer>
+
+	<script defer src="{{ url_for('views.themes', path='js/vendor.bundle.js') }}"></script>
+	<script defer src="{{ url_for('views.themes', path='js/core.js') }}"></script>
+	<script defer src="{{ url_for('views.themes', path='js/helpers.js') }}"></script>
+
+	{% block entrypoint %}
+	<script defer src="{{ url_for('views.themes', path='js/pages/main.js') }}"></script>
+	{% endblock %}
+
+	{% block scripts %}
+	{% endblock %}
+
+	{{ Plugins.scripts }}
+
+	{{ Configs.theme_footer }}
+</body>
+</html>
