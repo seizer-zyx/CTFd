@@ -28,9 +28,9 @@
 <body>
 <style type="text/css">
 	body{
-    		background-image: url(https://gitee.com/seizer-zyx/picgo/raw/master/background/202109162228256.jpg);
-		background-size: cover;
-		background-position: center;
+    		background-image: url("{{ url_for('views.themes', path='img/background.jpg') }}");
+			background-size: cover;
+			background-position: center;
     		background-repeat: no-repeat;
 	}
 </style>

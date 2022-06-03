@@ -17,6 +17,8 @@
 			'csrfNonce': "{{ Session.nonce }}",
 			'userMode': "{{ get_config('user_mode') }}",
 			'userId': {{ id if (id is defined) else 0 }},
+			'userName': "{{ User.name }}",
+			'userEmail': "{{ User.email }}",
 			'start': {{ get_config("start") | tojson }},
 			'end': {{ get_config("end") | tojson }},
 		}
@@ -34,14 +36,6 @@
 </head>
 
 <body>
-	<style type="text/css">
-		body{
-    			background-image: url(https://gitee.com/seizer-zyx/picgo/raw/master/background/202109162228256.jpg);
-			background-size: cover;
-			background-position: center;
-    			background-repeat: no-repeat;
-		}
-	</style>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 		<div class="container">
 			<a href="{{ url_for('views.static_html', route='/') }}" class="navbar-brand">CTFd</a>

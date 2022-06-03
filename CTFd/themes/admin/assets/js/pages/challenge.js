@@ -11,9 +11,11 @@ import Vue from "vue/dist/vue.esm.browser";
 import CommentBox from "../components/comments/CommentBox.vue";
 import FlagList from "../components/flags/FlagList.vue";
 import Requirements from "../components/requirements/Requirements.vue";
+import TopicsList from "../components/topics/TopicsList.vue";
 import TagsList from "../components/tags/TagsList.vue";
 import ChallengeFilesList from "../components/files/ChallengeFilesList.vue";
 import HintsList from "../components/hints/HintsList.vue";
+import NextChallenge from "../components/next/NextChallenge.vue";
 import hljs from "highlight.js";
 
 const displayHint = data => {
@@ -325,6 +327,10 @@ $(() => {
     );
   });
 
+  $(".comments-challenge").click(function(_event) {
+    $("#challenge-comments-window").modal();
+  });
+
   $(".delete-challenge").click(function(_e) {
     ezQuery({
       title: "Delete Challenge",
@@ -438,6 +444,16 @@ $(() => {
     }).$mount(vueContainer);
   }
 
+  // Load TopicsList component
+  if (document.querySelector("#challenge-topics")) {
+    const topicsList = Vue.extend(TopicsList);
+    let vueContainer = document.createElement("div");
+    document.querySelector("#challenge-topics").appendChild(vueContainer);
+    new topicsList({
+      propsData: { challenge_id: window.CHALLENGE_ID }
+    }).$mount(vueContainer);
+  }
+
   // Load TagsList component
   if (document.querySelector("#challenge-tags")) {
     const tagList = Vue.extend(TagsList);
@@ -474,6 +490,16 @@ $(() => {
     let vueContainer = document.createElement("div");
     document.querySelector("#challenge-hints").appendChild(vueContainer);
     new hintsList({
+      propsData: { challenge_id: window.CHALLENGE_ID }
+    }).$mount(vueContainer);
+  }
+
+  // Load Next component
+  if (document.querySelector("#next-add-form")) {
+    const nextChallenge = Vue.extend(NextChallenge);
+    let vueContainer = document.createElement("div");
+    document.querySelector("#next-add-form").appendChild(vueContainer);
+    new nextChallenge({
       propsData: { challenge_id: window.CHALLENGE_ID }
     }).$mount(vueContainer);
   }
