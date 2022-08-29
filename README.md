@@ -87,6 +87,8 @@ git clone -b v3.5 https://github.com/seizer-zyx/CTFd.git
 cd CTFd
 # 查看ctfd-whale子模块
 git submodule
+# ctfd-whale子模块注册
+git submodule init
 # 添加ctfd-whale子模块
 git submodule update
 ```
