@@ -91,6 +91,8 @@ git submodule
 git submodule init
 # 添加ctfd-whale子模块
 git submodule update
+# 增加可执行权限
+chmod +x ./docker-entrypoint.sh
 ```
 
 ## 开始搭建CTFd
